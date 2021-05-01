@@ -12,5 +12,5 @@ class WeatherRepository(
 ) : BaseRepository() {
 
     suspend fun currentTemp(lat: String, lon: String, cnt: String, appid: String) =
-        safeApiCall { api.getCurrentWeather(lat, lon, cnt, appid) }
+        safeApiCall { api.getCurrentWeather(lat, lon, cnt,"metric", appid) }
 }

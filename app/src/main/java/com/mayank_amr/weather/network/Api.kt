@@ -13,6 +13,8 @@ interface Api {
         @Query("lat") latitude: String,
         @Query("lon") longitude: String,
         @Query("cnt") count:String,
+        @Query("units") units: String,
         @Query("APPID") appid: String
+
     ): ForecastResponse
 }

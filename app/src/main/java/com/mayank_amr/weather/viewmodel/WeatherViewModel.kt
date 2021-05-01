@@ -39,7 +39,7 @@ class WeatherViewModel(
             _forecast.value = repository.currentTemp(
                 "26.328864",
                 "81.599943",
-                "32",
+                "40",
                 "9b8cb8c7f11c077f8c4e217974d9ee40"
             )
         }
