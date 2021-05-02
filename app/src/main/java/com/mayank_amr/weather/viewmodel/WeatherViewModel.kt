@@ -1,12 +1,11 @@
 package com.mayank_amr.weather.viewmodel
 
-import android.content.ContentValues.TAG
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.mayank_amr.weather.base.BaseViewModel
 import com.mayank_amr.weather.data.responses.ForecastResponse
+import com.mayank_amr.weather.data.responses.WeatherResponse
 import com.mayank_amr.weather.network.Resource
 import com.mayank_amr.weather.repository.WeatherRepository
 import kotlinx.coroutines.launch
@@ -14,34 +13,31 @@ import kotlinx.coroutines.launch
 class WeatherViewModel(
     private val repository: WeatherRepository
 ) : BaseViewModel(repository) {
-    private val _forecast: MutableLiveData<Resource<ForecastResponse>> = MutableLiveData()
+    private var _currentWeather: MutableLiveData<Resource<WeatherResponse>> = MutableLiveData()
 
-    val currentTemp: LiveData<Resource<ForecastResponse>>
-        get() = _forecast
+    private var _forecastWeather: MutableLiveData<Resource<ForecastResponse>> = MutableLiveData()
 
 
-    fun loaddata(lat: String, lon: String) = viewModelScope.launch {
-        _forecast.value = Resource.Loading
-        _forecast.value = repository.currentTemp(
-            lat,//"26.328864",
-            lon, //"81.599943",
-            "40",
-            "9b8cb8c7f11c077f8c4e217974d9ee40"
+    val currentWeather: LiveData<Resource<WeatherResponse>>
+        get() = _currentWeather
+
+    val forecastWeather: LiveData<Resource<ForecastResponse>>
+        get() = _forecastWeather
+
+
+    fun fetchWeatherData(lat: String, lon: String) = viewModelScope.launch {
+        _currentWeather.value = Resource.Loading
+        _currentWeather.value = repository.currentWeather(lat, lon)
+
+    }
+
+    fun fetchForecastData(lat: String, lon: String) = viewModelScope.launch {
+        _forecastWeather.value = Resource.Loading
+        _forecastWeather.value = repository.forecastWeather(
+            lat,
+            lon,
         )
     }
 
-    init {
-        Log.d(TAG, ":ViewModel Created")
-
-//        viewModelScope.launch {
-//            _forecast.value = Resource.Loading
-//            _forecast.value = repository.currentTemp(
-//                "26.328864",
-//                "81.599943",
-//                "40",
-//                "9b8cb8c7f11c077f8c4e217974d9ee40"
-//            )
-//        }
-    }
 
 }

@@ -1,4 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Weather</string>
     <string name="something_went_wrong_at_our_end">Something went wrong at our end!</string>
 </resources>
