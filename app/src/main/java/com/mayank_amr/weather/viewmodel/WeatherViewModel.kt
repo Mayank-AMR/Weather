@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.mayank_amr.weather.base.BaseViewModel
 import com.mayank_amr.weather.data.responses.ForecastResponse
-import com.mayank_amr.weather.data.responses.WeatherResponse
 import com.mayank_amr.weather.network.Resource
 import com.mayank_amr.weather.repository.WeatherRepository
 import kotlinx.coroutines.launch
@@ -21,12 +20,12 @@ class WeatherViewModel(
         get() = _forecast
 
 
-    fun loaddata() = viewModelScope.launch {
+    fun loaddata(lat: String, lon: String) = viewModelScope.launch {
         _forecast.value = Resource.Loading
         _forecast.value = repository.currentTemp(
-            "26.328864",
-            "81.599943",
-            "32",
+            lat,//"26.328864",
+            lon, //"81.599943",
+            "40",
             "9b8cb8c7f11c077f8c4e217974d9ee40"
         )
     }
@@ -34,15 +33,15 @@ class WeatherViewModel(
     init {
         Log.d(TAG, ":ViewModel Created")
 
-        viewModelScope.launch {
-            _forecast.value = Resource.Loading
-            _forecast.value = repository.currentTemp(
-                "26.328864",
-                "81.599943",
-                "40",
-                "9b8cb8c7f11c077f8c4e217974d9ee40"
-            )
-        }
+//        viewModelScope.launch {
+//            _forecast.value = Resource.Loading
+//            _forecast.value = repository.currentTemp(
+//                "26.328864",
+//                "81.599943",
+//                "40",
+//                "9b8cb8c7f11c077f8c4e217974d9ee40"
+//            )
+//        }
     }
 
 }
