@@ -8,7 +8,7 @@ In this project I have shown current temperature and weather forecast for 4 days
 - Used Coroutines for threading.
 - Used Navigation Component with Single Activity pattern.
 - Used fragments and lifecycle.
-- Used Two way data binding.
+- Used Data binding.
 - Used Material Design.
 - Used Retrofit for data fetch via Backend Api.
 
