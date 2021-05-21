@@ -16,7 +16,7 @@ In this project I have shown current temperature and weather forecast for 4 days
 - Open app `Check GPS enabled` => `Load Weatherdata` => `Home Screen`.
 
 
-<!--### Screenshots
+### Screenshots
 
 #### Checking GPS
 <p align="center">
